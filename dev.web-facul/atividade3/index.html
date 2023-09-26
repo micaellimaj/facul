@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Calculo de Idade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        #container {
+            background-color: #fff;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        p {
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Calculadora de Idade</h1>
+        <label for="birthdate">Data de Nascimento:</label>
+        <input type="date" id="birthdate">
+        <button onclick="calculateAge()">Calcular Idade</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const birthdate = document.getElementById("birthdate").value;
+            const today = new Date();
+            const birthDate = new Date(birthdate);
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            if (!isNaN(age)) {
+                document.getElementById("result").textContent = `Sua idade é ${age} anos.`;
+            } else {
+                document.getElementById("result").textContent = "Por favor, insira uma data de nascimento válida.";
+            }
+        }
+    </script>
+</body>
+</html>
